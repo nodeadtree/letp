@@ -65,33 +65,34 @@ test_wrapper_instructions = [[identity]]
 
 @pytest.mark.parametrize("wrapper_instructions",
                          test_wrapper_instructions)
-def test_wrapper_stage_no_data(wrapper_instructions):
+def test_pre_analysis_stage_no_data(wrapper_instructions):
     with pytest.raises(Exception):
-        mldp.wrapper_stage(None, wrapper_instructions)
+        mldp.pre_analysis_stage(None, wrapper_instructions)
 
 
 @pytest.mark.parametrize("sizes,wrapper_instructions",
                          zip(size_col, test_wrapper_instructions))
-def test_wrapper_stage_for_output(sizes, wrapper_instructions):
+def test_pre_analysis_stage_for_output(sizes, wrapper_instructions):
     for i in sizes:
-        assert mldp.wrapper_stage(generate_test_matrix(i),
-                                  wrapper_instructions) is not None
+        assert mldp.pre_analysis_stage(generate_test_matrix(i),
+                                       wrapper_instructions) is not None
 
 
 @pytest.mark.parametrize("sizes,wrapper_instructions",
                          zip(size_col, test_wrapper_instructions))
-def test_wrapper_stage_for_numpy_arrays(sizes, wrapper_instructions):
+def test_pre_analysis_stage_for_numpy_arrays(sizes, wrapper_instructions):
     for i in sizes:
-        assert isinstance(mldp.wrapper_stage(generate_test_matrix(i),
-                                             wrapper_instructions), np.ndarray)
+        assert isinstance(mldp.pre_analysis_stage(generate_test_matrix(i),
+                                                  wrapper_instructions),
+                          np.ndarray)
 
 
 @pytest.mark.parametrize("sizes,wrapper_instructions",
                          zip(size_col, test_wrapper_instructions))
-def test_wrapper_stage_for_array_dimension(sizes, wrapper_instructions):
+def test_pre_analysis_stage_for_array_dimension(sizes, wrapper_instructions):
     for i in sizes:
-        assert mldp.wrapper_stage(generate_test_matrix(i),
-                                  wrapper_instructions).ndim > 1
+        assert mldp.pre_analysis_stage(generate_test_matrix(i),
+                                       wrapper_instructions).ndim > 1
 
 
 # Composition testing
@@ -104,7 +105,7 @@ param_string = "sizes,reader,processor,wrapper_instructions"
 def test_process_wrapper_composition(sizes, reader, processor,
                                      wrapper_instructions):
     for i in sizes:
-        mldp.wrapper_stage(mldp.process_raw_data(generate_test_matrix(i),
-                                                 reader, processor),
-                           wrapper_instructions)
+        mldp.pre_analysis_stage(mldp.process_raw_data(generate_test_matrix(i),
+                                                      reader, processor),
+                                wrapper_instructions)
     pass
