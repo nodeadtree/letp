@@ -1,3 +1,9 @@
+# Copyright (c) 2018 Juniper Overbeck
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 import pytest
 import itertools as it
 import numpy as np
@@ -15,9 +21,14 @@ def identity(x):
     return x
 
 
+def identity_with_parameters(x):
+    return x, 1
+
+
 # Test cases for the process_raw_data function. By default, these tests use no
 # filter, but filtering functions can be passed as parameters to check their
 # sanity.
+
 default_test_sizes = [1, 10, 1000]
 size_combos = [(i, k) for i, k in it.product(default_test_sizes,
                default_test_sizes[1:])]
@@ -84,7 +95,7 @@ def test_pre_analysis_stage_for_numpy_arrays(sizes, wrapper_instructions):
     for i in sizes:
         assert isinstance(mldp.pre_analysis_stage(generate_test_matrix(i),
                                                   wrapper_instructions),
-                          np.ndarray)
+                          dict)
 
 
 @pytest.mark.parametrize("sizes,wrapper_instructions",
@@ -92,7 +103,7 @@ def test_pre_analysis_stage_for_numpy_arrays(sizes, wrapper_instructions):
 def test_pre_analysis_stage_for_array_dimension(sizes, wrapper_instructions):
     for i in sizes:
         assert mldp.pre_analysis_stage(generate_test_matrix(i),
-                                       wrapper_instructions).ndim > 1
+                                       wrapper_instructions)['wrapper_data'].ndim > 1
 
 
 # Composition testing
