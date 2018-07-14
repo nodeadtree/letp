@@ -6,7 +6,6 @@
 
 from multiprocessing import Pool
 
-
 def process_raw_data(data, reader=lambda x: x,
                      processor=lambda x: x):
     assert data is not None
