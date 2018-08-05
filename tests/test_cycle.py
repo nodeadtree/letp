@@ -7,7 +7,7 @@
 import pytest
 import numpy as np
 import itertools as it
-import mldp as m
+import letp as m
 
 from pathlib import Path
 # Test cases for the process_raw_data function. By default, these tests use no

@@ -8,7 +8,7 @@
 import pytest
 import numpy as np
 import itertools as it
-import mldp.data_handler as a
+import letp.data_handler as a
 
 # Test cases for the process_raw_data function. By default, these tests use no
 # filter, but filtering functions can be passed as parameters to check their

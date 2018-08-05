@@ -7,7 +7,7 @@
 import pytest
 import itertools as it
 import numpy as np
-import mldp.analysis as a
+import letp.analysis as a
 
 from json import load
 
