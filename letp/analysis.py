@@ -33,8 +33,11 @@ class Analyzer(object):
             results[m] = self._functions[m](data)
         return results
 
+    # The design of this is inconsistent with everything else and should
+    # have things parametrized appropriately instead of relying of having
+    # json output as a default
     def dump_measurement(self, measurement, data, title='dump'):
-        fname = '{0}-{1}.json'.format(title,  self._counter)
+        fname = '{0}_{1}.json'.format(title,  self._counter)
         path = join(self._output_directory, fname)
         results = dict()
         results[measurement] = self.analyze_measurement(measurement, data)
