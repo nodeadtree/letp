@@ -31,8 +31,9 @@ The next common component of these comparisons is to take the processed data, an
 
 After collection of measurements, we are interested in meta-measurements, where we compute things like accuracy, f1 scores, specificity, sensitivity, or ROC curves. This varies heavily from task to task, but largely involves the same computations performed on the measurements from each algorithm. This produces the output that is used for comparing each of the algorithms.
 
+
 ![letp roles graph](https://user-images.githubusercontent.com/30419327/61099564-a327ac00-a417-11e9-9f33-4a36e468c427.png)
- 
+
 
 # letp Documentation
 
